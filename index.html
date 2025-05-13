@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ABISM - Tactical Shooter</title>
   <style>
+    /* Reset y estilos base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body, html {
+    body {
       font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
       background-color: #0f1923;
-      color: white;
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    /* VIDEO DE FONDO */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Video de fondo */
     .video-background {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -1;
-      object-fit: cover;
-      opacity: 0.4;
-    }
-
-    header {
-      width: 100%;
       position: fixed;
       top: 0;
       left: 0;
-      padding: 20px 40px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 25, 35, 0.9);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: rgba(15, 25, 35, 0.9);
+      padding: 20px 40px;
       z-index: 10;
     }
 
@@ -50,9 +56,8 @@
     }
 
     nav a {
-      color: white;
       margin-left: 20px;
-      text-decoration: none;
+      color: white;
       transition: color 0.3s;
     }
 
@@ -60,58 +65,71 @@
       color: #f94f6d;
     }
 
+    /* Secciones */
+    section {
+      padding: 100px 20px 60px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      color: #f94f6d;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero */
     .hero {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding-top: 80px;
       text-align: center;
-      padding: 100px 20px 20px;
     }
 
     .hero h2 {
       font-size: 3em;
       color: #f94f6d;
       text-shadow: 0 0 10px #f94f6d;
-      animation: fadeInDown 1s ease-in-out;
+      margin-bottom: 20px;
     }
 
     .hero p {
       font-size: 1.2em;
       max-width: 600px;
-      margin-top: 20px;
-      animation: fadeInUp 1s ease-in-out;
+      margin-bottom: 30px;
     }
 
-    .hero button {
-      margin-top: 30px;
+    /* Botones fluorescentes */
+    .fluorescent-button {
+      display: inline-block;
       padding: 15px 30px;
-      background-color: #f94f6d;
-      border: none;
-      color: white;
       font-size: 1em;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .hero button:hover {
-      background-color: #ff7d90;
-    }
-
-    section {
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 2em;
-      margin-bottom: 40px;
       color: #f94f6d;
+      border: 2px solid #f94f6d;
+      border-radius: 5px;
+      background: transparent;
+      cursor: pointer;
+      text-shadow: 0 0 5px #f94f6d;
+      transition: background 0.3s, color 0.3s;
     }
 
-    .agents, .carousel {
+    .fluorescent-button:hover {
+      background: #f94f6d;
+      color: #fff;
+    }
+
+    /* Agentes y tarjetas */
+    .card-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -140,6 +158,7 @@
       color: #fff;
     }
 
+    /* Footer */
     footer {
       padding: 30px;
       text-align: center;
@@ -147,18 +166,8 @@
       opacity: 0.6;
     }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @media (max-width: 768px) {
-      .agents, .carousel {
+      .card-container {
         flex-direction: column;
         align-items: center;
       }
@@ -177,79 +186,89 @@
 </head>
 <body>
 
-  <!-- VIDEO DE FONDO -->
+  <!-- Video de fondo -->
   <video autoplay muted loop class="video-background">
     <source src="https://assets.codepen.io/6093409/val-bg.mp4" type="video/mp4">
   </video>
 
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <header>
     <h1>ABISM</h1>
     <nav>
       <a href="#agentes">Agentes</a>
       <a href="#mapas">Mapas</a>
+      <a href="#armas">Armas</a>
       <a href="#descargar">Descargar</a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <div class="hero">
+  <!-- Hero -->
+  <section class="hero">
     <h2>Bienvenido a ABISM</h2>
     <p>El nuevo shooter táctico donde estrategia y reflejos se enfrentan. ¿Estás listo para entrar al abismo?</p>
-    <button onclick="location.href='#descargar'">Descargar</button>
-  </div>
+    <a href="#descargar" class="fluorescent-button">Descargar</a>
+  </section>
 
-  <!-- AGENTES -->
+  <!-- Agentes -->
   <section id="agentes">
     <h2 class="section-title">Agentes</h2>
-    <div class="agents">
-      <div class="card">
-        <img src="https://assets.codepen.io/6093409/valorant-agent-1.jpg" alt="Agente 1">
-        <h3>Ghost</h3>
-      </div>
-      <div class="card">
-        <img src="https://assets.codepen.io/6093409/valorant-agent-2.jpg" alt="Agente 2">
-        <h3>Nova</h3>
-      </div>
-      <div class="card">
-        <img src="https://assets.codepen.io/6093409/valorant-agent-3.jpg" alt="Agente 3">
-        <h3>Vektor</h3>
-      </div>
+    <div class="card-container">
+      <a href="#" class="card">
+        <img src="https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/displayicon.png" alt="Jett">
+        <h3>Jett</h3>
+      </a>
+      <a href="#" class="card">
+        <img src="https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/displayicon.png" alt="Phoenix">
+        <h3>Phoenix</h3>
+      </a>
+      <a href="#" class="card">
+        <img src="https://media.valorant-api.com/agents/6f2a04ca-43e0-be17-7f36-b3908627744d/displayicon.png" alt="Sage">
+        <h3>Sage</h3>
+      </a>
+      <a href="#" class="card">
+        <img src="https://media.valorant-api.com/agents/117ed9e3-49f3-6512-3ccf-0cada7e3823b/displayicon.png" alt="Sova">
+        <h3>Sova</h3>
+      </a>
+      <a href="#" class="card">
+        <img src="https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/displayicon.png" alt="Viper">
+        <h3>Viper</h3>
+      </a>
+      <a href="#" class="card">
+        <img src="https://media.valorant-api.com/agents/41fb69c1-4189-7b37-f117-bcaf1e96f1bf/displayicon.png" alt="Reyna">
+        <h3>Reyna</h3>
+      </a>
     </div>
   </section>
 
-  <!-- MAPAS / ARMAS -->
+  <!-- Mapas -->
   <section id="mapas">
-    <h2 class="section-title">Mapas y Armas</h2>
-    <div class="carousel">
+    <h2 class="section-title">Mapas</h2>
+    <div class="card-container">
       <div class="card">
-        <img src="https://assets.codepen.io/6093409/valorant-map-1.jpg" alt="Mapa 1">
-        <h3>Ruinas</h3>
+        <img src="https://media.valorant-api.com/maps/2c9d57ec-4431-9c5e-2939-8f9e6cf8b6b1/splash.png" alt="Heaven">
+        <h3>Haven</h3>
       </div>
       <div class="card">
-        <img src="https://assets.codepen.io/6093409/valorant-map-2.jpg" alt="Mapa 2">
-        <h3>Frontera</h3>
+        <img src="https://media.valorant-api.com/maps/e2ad5c54-4114-3c59-3f4d-d7a22f931a5d/splash.png" alt="Icebox">
+        <h3>Icebox</h3>
       </div>
       <div class="card">
-        <img src="https://assets.codepen.io/6093409/valorant-map-3.jpg" alt="Arma 1">
-        <h3>PhantomX</h3>
+        <img src="https://media.valorant-api.com/maps/2fe4ed3a-450a-8cbd-7d6a-3f7e3e8b5b6d/splash.png" alt="Ascent">
+        <h3>Ascent</h3>
       </div>
     </div>
   </section>
 
-  <!-- DESCARGA -->
-  <section id="descargar">
-    <h2 class="section-title">Descarga Abism</h2>
-    <p>Disponible para Windows y Android. Más plataformas próximamente.</p>
-    <button class="button">Descargar para Windows</button>
-    <button class="button">Descargar para Android</button>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © 2025 Abism. Todos los derechos reservados.
-  </footer>
-
-</body>
-</html>
-
+  <!-- Armas -->
+  <section id="armas">
+    <h2 class="section-title">Armas</h2>
+    <div class="card-container">
+      <div class="card">
+        <img src="https://media.valorant-api.com/weaponskins/3f1c7f3c-4d6a-3f1e-8c9b-3f7e3e8b5b6d/displayicon.png" alt="Elderflame Vandal">
+        <h3>Elderflame Vandal</h3>
+      </div>
+      <div class="card">
+        <img src="https://media.valorant-api.com/weaponskins/4f1c7f3c-4d6a-3f1e-8c9b-3f7e3e8b5b6d/displayicon.png" alt="Reaver Phantom">
+        <h3>Reaver Phantom</h3>
+      </div>
+      <div class="0
