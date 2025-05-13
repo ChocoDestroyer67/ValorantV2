@@ -1,1 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABISM - Tactical Shooter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      background-color: #0f1923;
+      color: white;
+    }
+
+    /* VIDEO DE FONDO */
+    .video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(15, 25, 35, 0.9);
+      z-index: 10;
+    }
+
+    header h1 {
+      color: #f94f6d;
+      font-size: 1.8em;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f94f6d;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 20px;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      color: #f94f6d;
+      text-shadow: 0 0 10px #f94f6d;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin-top: 20px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .hero button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-color: #f94f6d;
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #ff7d90;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2em;
+      margin-bottom: 40px;
+      color: #f94f6d;
+    }
+
+    .agents, .carousel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      width: 200px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      margin-top: 10px;
+      color: #fff;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      font-size: 0.9em;
+      opacity: 0.6;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .agents, .carousel {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIDEO DE FONDO -->
+  <video autoplay muted loop class="video-background">
+    <source src="https://assets.codepen.io/6093409/val-bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- NAVBAR -->
+  <header>
+    <h1>ABISM</h1>
+    <nav>
+      <a href="#agentes">Agentes</a>
+      <a href="#mapas">Mapas</a>
+      <a href="#descargar">Descargar</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h2>Bienvenido a ABISM</h2>
+    <p>El nuevo shooter táctico donde estrategia y reflejos se enfrentan. ¿Estás listo para entrar al abismo?</p>
+    <button onclick="location.href='#descargar'">Descargar</button>
+  </div>
+
+  <!-- AGENTES -->
+  <section id="agentes">
+    <h2 class="section-title">Agentes</h2>
+    <div class="agents">
+      <div class="card">
+        <img src="https://assets.codepen.io/6093409/valorant-agent-1.jpg" alt="Agente 1">
+        <h3>Ghost</h3>
+      </div>
+      <div class="card">
+        <img src="https://assets.codepen.io/6093409/valorant-agent-2.jpg" alt="Agente 2">
+        <h3>Nova</h3>
+      </div>
+      <div class="card">
+        <img src="https://assets.codepen.io/6093409/valorant-agent-3.jpg" alt="Agente 3">
+        <h3>Vektor</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPAS / ARMAS -->
+  <section id="mapas">
+    <h2 class="section-title">Mapas y Armas</h2>
+    <div class="carousel">
+      <div class="card">
+        <img src="https://assets.codepen.io/6093409/valorant-map-1.jpg" alt="Mapa 1">
+        <h3>Ruinas</h3>
+      </div>
+      <div class="card">
+        <img src="https://assets.codepen.io/6093409/valorant-map-2.jpg" alt="Mapa 2">
+        <h3>Frontera</h3>
+      </div>
+      <div class="card">
+        <img src="https://assets.codepen.io/6093409/valorant-map-3.jpg" alt="Arma 1">
+        <h3>PhantomX</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCARGA -->
+  <section id="descargar">
+    <h2 class="section-title">Descarga Abism</h2>
+    <p>Disponible para Windows y Android. Más plataformas próximamente.</p>
+    <button class="button">Descargar para Windows</button>
+    <button class="button">Descargar para Android</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Abism. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
 
